@@ -13,7 +13,6 @@ class BasicPerceptron(Neuron):
         while not all([self.is_output_correct(pair) for pair in input_pairs]):
             np.random.shuffle(input_pairs)
             self.epochs += 1
-        print(self.epochs, self.weights)
 
     def is_output_correct(self, input_pair):
         err = self.learning_pairs[input_pair][1] - self.activation_func(input_pair)

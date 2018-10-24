@@ -1,1 +1,1 @@
-import neural_networks.neuron.plotters
+import neural_networks.neuron.plotters.plotter
