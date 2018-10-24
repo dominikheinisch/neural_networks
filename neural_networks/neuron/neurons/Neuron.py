@@ -4,11 +4,8 @@ import numpy as np
 
 class Neuron(ABC):
     def __init__(self, **kwargs):
-        # self.learn_param = kwargs['alpha']
-        self.alpha = kwargs['alpha']
-        self.invalid_output = kwargs['invalid_output']
+        self.learning_param = kwargs['learning_param']
         self.learning_data = kwargs['learning_pairs']
-        self.threshold = kwargs['threshold']
         self.weights = self.calc_weights(scope=kwargs['scope'])
         self.epochs = 0
 
