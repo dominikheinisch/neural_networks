@@ -4,7 +4,6 @@ import numpy as np
 def preapre(params):
     add_default_params(params)
     adjust_params(params)
-    return params
 
 
 def add_default_params(params):
