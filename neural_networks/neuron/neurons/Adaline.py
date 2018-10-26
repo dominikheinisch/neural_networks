@@ -17,8 +17,9 @@ class Adaline(Neuron):
 
     def is_output_correct(self, input_pair):
         err = self.learning_data[input_pair][1] - self.weights @ self.learning_data[input_pair][0]
-        print(err)
         self.weights += 2 * self.learning_param * err * self.learning_data[input_pair][0]
+        # TODO remove
+        print(err)
         # print(self.weights)
         return abs(err) < self.threshold
 

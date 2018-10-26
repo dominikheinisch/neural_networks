@@ -12,13 +12,15 @@ def learn(neuron_class, params, is_to_print=False, is_to_plot=False):
     elif neuron_class == 'BasicPerceptron':
         neuron = BasicPerceptron(**params)
     neuron.learn()
+    # print(neuron.epochs)
     if is_to_print:
         print(neuron)
     if is_to_plot:
         plotter.plot(*neuron.get_plot_data())
+    return neuron
 
 
-def run(neuron_class, activation_func, params, is_to_plot=False, is_to_print=False, times=1000):
+def run(neuron_class, activation_func, params, times, is_to_plot=False, is_to_print=False):
     params['activation_func'] = activation_func
     parameter_preparer.preapre(params=params)
     start = time.time()
@@ -26,3 +28,13 @@ def run(neuron_class, activation_func, params, is_to_plot=False, is_to_print=Fal
         learn(neuron_class, params, is_to_print=is_to_print, is_to_plot=is_to_plot)
     stop = time.time()
     return stop - start
+
+
+def run_many_to_get_avg_epochs(neuron_class, activation_func, params, times=1000):
+    params['activation_func'] = activation_func
+    parameter_preparer.preapre(params=params)
+    accumulator = 0
+    for i in range(times):
+        neuron = learn(neuron_class, params)
+        accumulator += neuron.epochs
+    return accumulator / times
