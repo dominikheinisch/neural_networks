@@ -1,5 +1,6 @@
 from neural_networks.neuron.simulations import simulation
 from neural_networks.neuron.helpers import input_checker
+from neural_networks.neuron.io import read_many_params, save
 
 from sys import argv
 
@@ -23,9 +24,9 @@ def set_optional_params(params):
 def watch_simulation(params, times=1000):
     if len(argv) == 1:
         # neuron_class, activation_func = 'Adaline', 'binary'
-        # neuron_class, activation_func = 'Adaline', 'bipolar'
+        neuron_class, activation_func = 'Adaline', 'bipolar'
         # neuron_class, activation_func = 'BasicPerceptron', 'binary'
-        neuron_class, activation_func = 'BasicPerceptron', 'bipolar'
+        # neuron_class, activation_func = 'BasicPerceptron', 'bipolar'
     else:
         input_checker.check_input()
         neuron_class, activation_func = argv[2], argv[3]
@@ -34,12 +35,25 @@ def watch_simulation(params, times=1000):
     print(time)
 
 
+def calc_and_save_multiple_simuation():
+    filename_pattern = 'data/learning_param_0.01_0.5{0}{1}{2}.json'
+    filename_pattern = 'data/scope_(-1, 1)_(-0.2, 0.2){0}{1}{2}.json'
+    filename_data = filename_pattern.format('', '', '')
+    neuron_name = 'BasicPerceptron'
+    activation_func = 'bipolar'
+    filename_dest = filename_pattern.format('_result_', neuron_name + '_', activation_func)
+    save(filename_dest, (simulation.run_many_params(neuron_name, activation_func, times=1000,
+                                                    list_params=read_many_params(filename_data))))
+
+
 if __name__ == "__main__":
     params = set_obligatory_params()
     # params = set_optional_params(params)
 
     # watch_simulation(params)
-    print(simulation.run_many_to_get_avg_epochs('BasicPerceptron', 'bipolar', params))
+    # print(simulation.run_avg_epochs('BasicPerceptron', 'bipolar', params, times=1000))
 
+    # print(simulation.run_many_params('BasicPerceptron', 'bipolar', times=1000, list_params=read_many_params('data/learning_param_0.01_0.5.json')))
+    calc_and_save_multiple_simuation()
 
 

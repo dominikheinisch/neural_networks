@@ -19,7 +19,7 @@ class Adaline(Neuron):
         err = self.learning_data[input_pair][1] - self.weights @ self.learning_data[input_pair][0]
         self.weights += 2 * self.learning_param * err * self.learning_data[input_pair][0]
         # TODO remove
-        print(err)
+        # print(err)
         # print(self.weights)
         return abs(err) < self.threshold
 
