@@ -12,7 +12,6 @@ def learn(neuron_class, params, is_to_print=False, is_to_plot=False):
     elif neuron_class == 'BasicPerceptron':
         neuron = BasicPerceptron(**params)
     neuron.learn()
-    # print(neuron.epochs)
     if is_to_print:
         print(neuron)
     if is_to_plot:
@@ -41,7 +40,6 @@ def run_avg_epochs(neuron_class, activation_func, params, times):
 
 
 def run_many_params(neuron_class, activation_func, list_params, times=1000):
-    # print(list_params)
     metadata = list_params[0]
     epochs = [run_avg_epochs(neuron_class, activation_func, params, times) for params in list_params[1:]]
     return metadata, epochs
