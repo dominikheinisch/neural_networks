@@ -21,18 +21,18 @@ def set_optional_params(params):
     return params
 
 
-def watch_simulation(params, times=1000):
+def watch_simulation(params, times=100):
     if len(argv) == 1:
-        # neuron_class, activation_func = 'Adaline', 'binary'
-        neuron_class, activation_func = 'Adaline', 'bipolar'
-        # neuron_class, activation_func = 'BasicPerceptron', 'binary'
-        # neuron_class, activation_func = 'BasicPerceptron', 'bipolar'
+        # neuron_class = 'Adaline'
+        neuron_class = 'BasicPerceptron'
+        # activation_func = 'binary'
+        activation_func = 'bipolar'
     else:
         input_checker.check_input()
         neuron_class, activation_func = argv[2], argv[3]
     time = simulation.run(neuron_class=neuron_class, activation_func=activation_func, params=params,
                           times=times, is_to_plot = True, is_to_print=True)
-    print(time)
+    # print(time)
 
 
 def calc_and_save_multiple_simuation():
@@ -47,13 +47,15 @@ def calc_and_save_multiple_simuation():
 
 
 if __name__ == "__main__":
-    params = set_obligatory_params()
+    # params = set_obligatory_params()
     # params = set_optional_params(params)
 
-    # watch_simulation(params)
+    watch_simulation(read('data/default_input_1.json'), times=2)
+    watch_simulation(read('data/default_input_2.json'), times=2)
+
     # print(simulation.run_avg_epochs('BasicPerceptron', 'bipolar', params, times=1000))
 
     # print(simulation.run_many_params('BasicPerceptron', 'bipolar', times=1000, list_params=read('data/learning_param_0.01_0.5.json')))
-    calc_and_save_multiple_simuation()
+    # calc_and_save_multiple_simuation()
 
 

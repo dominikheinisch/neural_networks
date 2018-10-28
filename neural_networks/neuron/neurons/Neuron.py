@@ -25,4 +25,5 @@ class Neuron(ABC):
         pass
 
     def __str__(self):
-        return '{0}\n{1}\n{2}\n'.format(self.epochs, self.weights, self.learning_data)
+        return 'epochs: {0}\nlast weights: {1}\nlearning_param: {2}\ndata: {3}\n'\
+            .format(self.epochs, self.weights, self.learning_param, self.learning_data)
