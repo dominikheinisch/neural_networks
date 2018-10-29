@@ -4,9 +4,11 @@ import numpy as np
 
 class Neuron(ABC):
     def __init__(self, **kwargs):
+        self.invalid_output = kwargs['invalid_output']
         self.learning_param = kwargs['learning_param']
         self.learning_data = kwargs['learning_pairs']
         self.weights = self.calc_weights(scope=kwargs['scope'])
+        self.begin_weights = self.weights
         self.epochs = 0
 
     @staticmethod
@@ -14,16 +16,19 @@ class Neuron(ABC):
         return np.random.uniform(low=scope[0], high=scope[1], size=3)
 
     def learn(self):
-        input_pairs = list(self.learning_data.keys())
-        np.random.shuffle(input_pairs)
-        while not all([self.is_output_correct(pair) for pair in input_pairs]):
-            np.random.shuffle(input_pairs)
-            self.epochs += 1
+        self.learn_weights()
 
     @abstractmethod
-    def is_output_correct(self, pair):
+    def learn_weights(self, pair):
         pass
 
+    @abstractmethod
+    def is_err_correct(self, pair):
+        pass
+
+    def activation_func(self, value):
+        return 1 if value > 0 else self.invalid_output
+
     def __str__(self):
-        return 'epochs: {0}\nlast weights: {1}\nlearning_param: {2}\ndata: {3}\n'\
-            .format(self.epochs, self.weights, self.learning_param, self.learning_data)
+        return 'epochs: {0}\nbegin weights: {1}\nlast weights: {2}\nlearning_param: {3}\ndata: {4}\n'\
+            .format(self.epochs,self.begin_weights, self.weights, self.learning_param, self.learning_data)
