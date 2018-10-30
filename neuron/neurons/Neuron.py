@@ -8,22 +8,19 @@ class Neuron(ABC):
         self.learning_param = kwargs['learning_param']
         self.learning_data = kwargs['learning_pairs']
         self.weights = self.calc_weights(scope=kwargs['scope'])
-        self.begin_weights = self.weights
+        self.begin_weights = np.copy(self.weights)
         self.epochs = 0
 
     @staticmethod
     def calc_weights(scope):
         return np.random.uniform(low=scope[0], high=scope[1], size=3)
 
-    def learn(self):
-        self.learn_weights()
-
     @abstractmethod
-    def learn_weights(self, pair):
+    def learn(self):
         pass
 
     @abstractmethod
-    def is_err_correct(self, pair):
+    def learn_weights(self):
         pass
 
     def activation_func(self, value):

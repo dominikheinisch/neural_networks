@@ -9,10 +9,11 @@ SOURCE_FOLDER = os.path.join('data', '{}')
 
 
 def set_obligatory_params():
-    learning_param = 0.5
-    scope = (-1.0, 1.0)
+    learning_param = 0.2
+    scope = (-0.5, 0.5)
+    # scope = (-1.0, 1.0)
     # scope = (-0.1, 0.1)
-    return {'learning_param': learning_param, 'scope': scope, 'threshold': 1.49}
+    return {'learning_param': learning_param, 'scope': scope, 'threshold': 1.0}
 
 
 def set_optional_params(params):
@@ -38,11 +39,11 @@ def watch_simulation(params, times=100):
 
 
 def calc_and_save_multiple_simuation():
-    # filename_pattern = SOURCE_FOLDER.format('learning_param_0.01_0.5{0}{1}{2}.json')
-    filename_pattern = SOURCE_FOLDER.format('scope_(-1, 1)_(-0.2, 0.2){0}{1}{2}.json')
+    filename_pattern = SOURCE_FOLDER.format('learning_param_0.01_0.5{0}{1}{2}.json')
+    # filename_pattern = SOURCE_FOLDER.format('scope_(-1, 1)_(-0.2, 0.2){0}{1}{2}.json')
     filename_data = filename_pattern.format('', '', '')
-    neuron_name = 'BasicPerceptron'
-    activation_func = 'binary'
+    neuron_name = 'Adaline'
+    activation_func = 'bipolar'
     filename_dest = filename_pattern.format('_result_', neuron_name + '_', activation_func)
     save(filename_dest, (simulation.run_many_params(neuron_name, activation_func, times=1000,
                                                     list_params=read(filename_data))))
@@ -60,9 +61,10 @@ def run_one():
 
 
 if __name__ == "__main__":
-    run_given_data()
+    print('NAKLEJKA LEGITYMACJA')
     # run_one()
-    # calc_and_save_multiple_simuation()
+    # run_given_data()
+    calc_and_save_multiple_simuation()
     # print(simulation.run_avg_epochs('BasicPerceptron', 'bipolar', params, times=1000))
     # print(simulation.run_many_params('BasicPerceptron', 'bipolar', times=1000, list_params=read('data/learning_param_0.01_0.5.json')))
 

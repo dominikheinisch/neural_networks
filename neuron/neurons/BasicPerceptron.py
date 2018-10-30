@@ -7,6 +7,9 @@ class BasicPerceptron(Neuron):
     def __init__(self, **kwargs):
         super(BasicPerceptron, self).__init__(**kwargs)
 
+    def learn(self):
+        self.learn_weights()
+
     def learn_weights(self):
         input_pairs = list(self.learning_data.keys())
         np.random.shuffle(input_pairs)

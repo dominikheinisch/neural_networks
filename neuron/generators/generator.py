@@ -25,13 +25,15 @@ def generate_many_data(params, param_name, modified_param):
 
 
 if __name__ == "__main__":
-    generate_data('default_input_threshold_0.5.json', {'learning_param': 0.1, 'scope': (-1.0, 1.0), 'threshold': 0.5})
-    generate_data('default_input_threshold_1.0.json', {'learning_param': 0.1, 'scope': (-1.0, 1.0), 'threshold': 1.0})
-    generate_data('default_input_threshold_1.5.json', {'learning_param': 0.1, 'scope': (-1.0, 1.0), 'threshold': 1.5})
-    generate_data('default_input_threshold_2.0.json', {'learning_param': 0.1, 'scope': (-1.0, 1.0), 'threshold': 2.0})
+    # generate_data('default_input_threshold_0.5.json', {'learning_param': 0.1, 'scope': (-1.0, 1.0), 'threshold': 0.5})
+    # generate_data('default_input_threshold_1.0.json', {'learning_param': 0.1, 'scope': (-1.0, 1.0), 'threshold': 1.0})
+    # generate_data('default_input_threshold_1.5.json', {'learning_param': 0.1, 'scope': (-1.0, 1.0), 'threshold': 1.5})
+    # generate_data('default_input_threshold_2.0.json', {'learning_param': 0.1, 'scope': (-1.0, 1.0), 'threshold': 2.0})
 
+    generate_many_data({'learning_param': 0.1, 'threshold': 1.0}, 'scope',
+                       [(-1, 1), (-0.8, 0.8), (-0.5, 0.5), (-0.2, 0.2), (0, 0)])
     # generate_many_data({'scope': (-0.5, 0.5), 'threshold': 1.0}, 'learning_param',
     #                    [0.01, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5])
-    # generate_many_data({'learning_param': 0.1, 'threshold': 1.0}, 'scope', [(-1, 1), (-0.8, 0.8), (-0.5, 0.5), (-0.2, 0.2)])
+
     # generate_many_data({'scope': (-0.5, 0.5), 'learning_param': 0.05}, 'threshold',
     #                    [0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1])

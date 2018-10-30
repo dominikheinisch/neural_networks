@@ -54,7 +54,9 @@ def plot(files):
 if __name__ == "__main__":
     filename1 = '../data/scope_(-1, 1)_(-0.2, 0.2)_result_BasicPerceptron_binary.json'
     filename2 = '../data/scope_(-1, 1)_(-0.2, 0.2)_result_BasicPerceptron_bipolar.json'
-    plot([filename1, filename2])
+    filename3 = '../data/scope_(-1, 1)_(-0.2, 0.2)_result_Adaline_bipolar.json'
+    plot([filename1, filename2, filename3])
     filename1 = '../data/learning_param_0.01_0.5_result_BasicPerceptron_binary.json'
     filename2 = '../data/learning_param_0.01_0.5_result_BasicPerceptron_bipolar.json'
-    plot([filename1, filename2])
+    filename3 = '../data/learning_param_0.01_0.5_result_Adaline_bipolar.json'
+    plot([filename1, filename2, filename3])
